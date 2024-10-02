@@ -1,0 +1,11 @@
+{
+    "build": {
+        "args": {
+            "PYTHON_ENV": "my_python_dev"
+        },
+        "context": ".",
+        "dockerfile": "Dockerfile"
+    },
+    "name": "Python 3",
+    "remoteUser": "dev-user"
+}
