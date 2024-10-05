@@ -7,5 +7,5 @@
         "dockerfile": "Dockerfile"
     },
     "name": "Python 3",
-    "remoteUser": "dev-user"
+    "remoteUser": "devuser"
 }

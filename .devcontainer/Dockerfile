@@ -12,7 +12,7 @@ RUN pip install --upgrade pip
 COPY requirements.txt  /requirements/
 RUN pip install -r /requirements/requirements.txt
 
-ARG USERNAME=dev
+ARG USERNAME=devuser
 RUN groupadd --gid 1000 $USERNAME && useradd --uid 1000 --gid 1000 -m $USERNAME
 
 COPY .bashrc /home/${USERNAME}/
