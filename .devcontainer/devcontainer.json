@@ -1,8 +1,6 @@
 {
     "build": {
-        "args": {
-            "PYTHON_ENV": "my_python_dev"
-        },
+        "args": {},
         "context": ".",
         "dockerfile": "Dockerfile"
     },
