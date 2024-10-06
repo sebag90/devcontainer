@@ -7,12 +7,11 @@
         "dockerfile": "Dockerfile"
     },
     "name": "Python 3",
-    "remoteUser": "devuser",
     "postCreateCommand": "bash .devcontainer/scripts/post_create.sh",
+    "remoteUser": "devuser",
     "runArgs": [
         "--rm",
-        "--env-file",".env"
-        // "--gpus", "all"
-]
-
+        "--env-file",
+        ".env"
+    ]
 }
