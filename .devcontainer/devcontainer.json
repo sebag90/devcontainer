@@ -11,6 +11,7 @@
     "postCreateCommand": "bash .devcontainer/scripts/post_create.sh",
     "runArgs": [
         "--rm",
+        "--env-file",".env"
         // "--gpus", "all"
 ]
 
