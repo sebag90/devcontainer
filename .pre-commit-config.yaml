@@ -5,14 +5,17 @@ repos:
     - id: trailing-whitespace
     - id: end-of-file-fixer
     - id: check-json
+      exclude: devcontainer
     - id: requirements-txt-fixer
     - id: pretty-format-json
       args: [--autofix, --indent=4, --no-ensure-ascii]
+      exclude: devcontainer
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.10
+  - repo: local
     hooks:
-    - id: ruff
-      args: [ --fix ]
-
-    - id: ruff-format
+      - id: ruff
+        name: ruff
+        entry: ruff check . --fix
+        language: python
+        types: [python]
+        pass_filenames: false

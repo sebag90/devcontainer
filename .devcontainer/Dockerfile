@@ -1,23 +1,9 @@
-ARG VERSION=3.12
-FROM python:${VERSION}
+FROM python:3.14-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
+ARG INSTALLER_VENV_PATH=/workspaces/venv
+ENV VIRTUAL_ENV=$INSTALLER_VENV_PATH \
+    UV_PROJECT_ENVIRONMENT=$INSTALLER_VENV_PATH
 
-# Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED=1
-
-RUN mkdir requirements
-RUN pip install --upgrade pip
-
-ARG USERNAME=devuser
-RUN groupadd --gid 1000 $USERNAME && useradd --uid 1000 --gid 1000 -m $USERNAME
-
-RUN apt update \
-    && apt-get install -y sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
-
-COPY scripts/.bashrc /home/${USERNAME}/
-ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
-USER $USERNAME
+ENV PATH="${INSTALLER_VENV_PATH}/bin:$PATH" \
+    PYTHONPATH=/workspaces/venv/lib/python3.14/site-packages
