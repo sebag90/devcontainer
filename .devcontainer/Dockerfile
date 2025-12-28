@@ -1,6 +1,8 @@
 FROM python:3.14-slim
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
+RUN apt-get update && apt-get install -y just
+
 ARG INSTALLER_VENV_PATH=/workspaces/venv
 ENV VIRTUAL_ENV=$INSTALLER_VENV_PATH \
     UV_PROJECT_ENVIRONMENT=$INSTALLER_VENV_PATH
